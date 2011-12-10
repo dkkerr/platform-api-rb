@@ -31,7 +31,7 @@ module GranicusPlatformAPI
     self.typegenerators["GroupData"]           = lambda { GroupData.new }
     self.typegenerators["KeyMapping"]          = lambda { KeyMapping.new }
     self.typegenerators["MetaDataData"]        = lambda { MetaDataData.new }
-    self.typegenerators["EComment"]            = lambda { EComment.new }
+    self.typegenerators["Comment"]             = lambda { Comment.new }
     self.typegenerators["Motion"]              = lambda { Motion.new }
     self.typegenerators["Note"]                = lambda { Note.new }
     self.typegenerators["Rollcall"]            = lambda { Rollcall.new }
@@ -292,12 +292,16 @@ module GranicusPlatformAPI
       call_soap_method(:update_meta_data, '//ns4:UpdateMetaDataResponse', {'MetaData' => meta_data})
     end
 
-    def get_ecomments_by_event_id(event_id)
-      call_soap_method(:get_ecomments_by_event_id, '//ns5:GetEcommentsByEventIDResponse/EComments', {'EventID' => event_id})
+    def get_comments_by_event_id(event_id)
+      call_soap_method(:get_comments_by_event_id, '//ns5:GetCommentsByEventIDResponse/Comments', {'EventID' => event_id})
+    end
+    
+    def get_comments_by_event_uid(uid)
+      call_soap_method(:get_comments_by_event_uid, '//ns5:GetCommentsByEventUIDResponse/Comments', {'EventUID' => uid})
     end
 
-    def get_ecomments_by_agenda_item_uid(uid)
-      call_soap_method(:get_ecomments_by_agenda_item_uid, '//ns5:GetEcommentsByAgendaItemUIDResponse/EComments', {'AgendaItemUID' => uid})
+    def get_comments_by_agenda_item_uid(uid)
+      call_soap_method(:get_comments_by_agenda_item_uid, '//ns5:GetCommentsByAgendaItemUIDResponse/Comments', {'AgendaItemUID' => uid})
     end
 
     # return all of the folders
@@ -460,7 +464,11 @@ module GranicusPlatformAPI
             puts "Unknown custom type: #{type}"
           end
           node.children.each do |value_node|
-            value[value_node.name] = handle_response value_node
+            begin
+              value[value_node.name] = handle_response value_node
+            rescue
+              # should log warning message here, but need to implement logging
+            end
           end
           value
       end

@@ -103,8 +103,8 @@ module GranicusPlatformAPI
     property :AgendaPostedDate
     property :NextStartDate
     property :AgendaRolloverID
-    property :ECommentEnabled
-    property :ECommentCloseOffset
+    property :CommentEnabled
+    property :CommentCloseOffset
   end
 
   class FolderData < Hashie::Dash
@@ -145,7 +145,7 @@ module GranicusPlatformAPI
     property :Children
   end
 
-  class EComment < Hashie::Dash
+  class Comment < Hashie::Dash
     property :FirstName
     property :LastName
     property :CommentText
@@ -155,7 +155,7 @@ module GranicusPlatformAPI
     property :State
     property :Zip
     property :Area
-    property :ECommentPositionID
+    property :Position
     property :HasVideoComment
     property :CreatedStamp
   end

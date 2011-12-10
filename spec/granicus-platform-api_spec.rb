@@ -105,10 +105,10 @@ describe GranicusPlatformAPI, "::Client Event Methods" do
     event.Duration            = EVENT["Duration"]
     event.FolderID            = EVENT["FolderID"]
     event.CameraID            = EVENT["CameraID"]
-    event.ECommentEnabled     = EVENT["ECommentEnabled"]
+    event.CommentEnabled     = EVENT["CommentEnabled"]
     event.AgendaPostedDate    = EVENT["AgendaPostedDate"]
     event.Attendees           = []
-    event.ECommentCloseOffset = EVENT["ECommentCloseOffset"]
+    event.CommentCloseOffset = EVENT["CommentCloseOffset"]
     event.StartTime           = Time.now() - 300
     event.FolderID            = client.get_folders()[0].ID
     event.CameraID            = client.get_cameras()[0].ID
@@ -182,7 +182,7 @@ describe GranicusPlatformAPI, "::Client Event Methods" do
   it "should have the EComment-specific fields" do
     event = client.get_event @event.ID
     event.NextStartDate.should_not == nil
-    event.ECommentEnabled.should_not == nil
+    event.CommentEnabled.should_not == nil
   end
 
   it "should get all events with matching foreign id" do
@@ -247,12 +247,12 @@ end
 
 describe GranicusPlatformAPI, "::EComment Methods" do
   it "should get ecomments by event id" do
-    comments = client.get_ecomments_by_event_id(811)
+    comments = client.get_comments_by_event_id(811)
     comments.should be_kind_of(Array)
   end
 
   it "should get ecomments by agenda item uid" do
-    comments = client.get_ecomments_by_agenda_item_uid("42a8238d-7638-102e-bb2d-9326039e1073")
+    comments = client.get_comments_by_agenda_item_uid("42a8238d-7638-102e-bb2d-9326039e1073")
     comments.should be_kind_of(Array)
   end
 end
