@@ -378,6 +378,7 @@ describe GranicusPlatformAPI, "::Settings Methods" do
     found    = settings.find { |s| s.Name == "name" && s.Value == SITE_NAME }
     found.should_not == nil
   end
+  
   it "should not return database setting" do
     settings = client.get_settings
     found    = settings.find { |s| s.Name == "database" }
