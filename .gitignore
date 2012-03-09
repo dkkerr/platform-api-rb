@@ -2,4 +2,4 @@ coverage
 *.gem
 Gemfile.lock
 .idea
-
+.rvmrc
