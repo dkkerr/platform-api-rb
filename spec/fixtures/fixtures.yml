@@ -1,4 +1,4 @@
-streaming.granicus.com:
+video.sanfoocisco.org:
   name: Granicus Sales and Marketing Materials
   camera_id: 3
   folder_id: 7
@@ -15,7 +15,7 @@ streaming.granicus.com:
   event_foreign_id: 1
   server_id: 2
   
-dev.dev.granicus.com:
+video.sanfoocisco.org:
   name: Dev Daily Build
   camera_id: 1
   folder_id: 1
