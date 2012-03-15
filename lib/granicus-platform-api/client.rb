@@ -118,7 +118,7 @@ module GranicusPlatformAPI
     end
 
     # connect up to a site
-    def connect(granicus_site, username, password, options={})
+    def connect(granicus_site, username, password)
       logout if @connected
 
       # create the client
@@ -271,10 +271,10 @@ module GranicusPlatformAPI
     end
 
     # add metadata to a clip
-    def add_clip_meta_data(clip_id, meta_data, options={})
+    def add_clip_meta_data(clip_id, meta_data)
       call_soap_method(             :add_clip_meta_data, '//ns5:AddClipMetaDataResponse/KeyTable', {
           'ClipID'   => clip_id,
-          'MetaData' => meta_data}, options)
+          'MetaData' => meta_data})
     end
 
     # fetch an attachment
@@ -351,8 +351,8 @@ module GranicusPlatformAPI
 
     #private
 
-    def call_soap_method(method, returnfilter, args={}, options={})
-      debug     = options[:debug]
+    def call_soap_method(method, returnfilter, args={})
+      debug     = @options[:debug]
       @response = @client.request :wsdl, method do
         soap.namespaces['xmlns:granicus'] = "http://granicus.com/xsd"
         soap.namespaces['xmlns:SOAP-ENC'] = "http://schemas.xmlsoap.org/soap/encoding/"
