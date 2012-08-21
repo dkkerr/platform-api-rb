@@ -185,6 +185,10 @@ module GranicusPlatformAPI
     def get_camera(camera_id)
       call_soap_method(:get_camera, '//ns5:GetCameraResponse/camera', {'CameraID' => camera_id})
     end
+    
+    def savon
+      @client
+    end
 
     # update a camera
     def update_camera(camera)
