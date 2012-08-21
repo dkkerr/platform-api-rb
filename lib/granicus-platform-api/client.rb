@@ -353,7 +353,7 @@ module GranicusPlatformAPI
 
     def call_soap_method(method, returnfilter, args={})
       debug     = @options[:debug]
-      @response = @client.request :wsdl, method do
+      @response = @client.request method do
         soap.namespaces['xmlns:granicus'] = "http://granicus.com/xsd"
         soap.namespaces['xmlns:SOAP-ENC'] = "http://schemas.xmlsoap.org/soap/encoding/"
         soap.body                         = prepare_hash args
