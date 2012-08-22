@@ -234,6 +234,14 @@ module GranicusPlatformAPI
     def delete_event(event_id)
       call_soap_method(:delete_event, '//ns4:DeleteEventResponse', {'EventID' => event_id})
     end
+    
+    def get_event_video_location(event_id)
+      call_soap_method(:get_event_video_location, '//ns4:GetEventVideoLocationResponse/url', {'EventID' => event_id})
+    end
+    
+    def get_event_video_location_by_uid(event_uid)
+      call_soap_method(:get_event_video_location_by_uid, '//ns4:GetEventVideoLocationByUIDResponse/url', {'EventUID' => event_uid})
+    end
 
     # return all of the event meta data
     def get_event_meta_data(event_id)
