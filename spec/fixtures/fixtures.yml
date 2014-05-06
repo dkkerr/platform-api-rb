@@ -29,7 +29,7 @@ video.sanfoocisco.org:
   event_foreign_id: 1
   server_id: 1
 
-localhost:
+linux.qa.granicus.com:
   name: Local Build
   camera_id: 1
   folder_id: 1

@@ -145,18 +145,23 @@ module GranicusPlatformAPI
     # impersonate a user
     def impersonate(token)
       @impersonation_token           = token
-      @client.http.headers["Cookie"] = "SESS1=#{token}; path=/"
+      @client.http.headers["Cookie"] = "_gat=#{token}; path=/"
     end
 
     def impersonation_token
       @impersonation_token
+    end
+    
+    def token=(token)
+      @impersonation_token           = token
+      @client.http.headers["Cookie"] = "_gat=#{token}; path=/"
     end
 
     # login
     def login(username, password)
       logout if @connected
       call_soap_method(:login, '//ns4:LoginResponse/return', {'Username' => username, 'Password' => password})
-      @impersonation_token = @response.http.headers['Set-Cookie'].gsub(/SESS1=(.*); path=\//, '\\1')
+      @impersonation_token = @response.http.headers['Set-Cookie'].gsub(/_gat=(.*); path=\//, '\\1')
       @connected           = true
     end
 
@@ -448,8 +453,8 @@ module GranicusPlatformAPI
       if node.is_a? Nokogiri::XML::NodeSet or node.is_a? Array then
         return node.map { |el| handle_response el }
       end
-      return node.to_s unless node['type']
-      typespace, type = node['type'].split(':')
+      return node.to_s unless node.attr('xsi:type')
+      typespace, type = node.attr('xsi:type').split(':')
       case typespace
         when 'xsd'
           proc = self.class.typecasts[type]
