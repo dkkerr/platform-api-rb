@@ -118,7 +118,7 @@ module GranicusPlatformAPI
     end
 
     # connect up to a site
-    def connect(granicus_site, username, password, options={})
+    def connect(granicus_site, username, password)
       logout if @connected
 
       # create the client
@@ -145,18 +145,23 @@ module GranicusPlatformAPI
     # impersonate a user
     def impersonate(token)
       @impersonation_token           = token
-      @client.http.headers["Cookie"] = "SESS1=#{token}; path=/"
+      @client.http.headers["Cookie"] = "_gat=#{token}; path=/"
     end
 
     def impersonation_token
       @impersonation_token
+    end
+    
+    def token=(token)
+      @impersonation_token           = token
+      @client.http.headers["Cookie"] = "_gat=#{token}; path=/"
     end
 
     # login
     def login(username, password)
       logout if @connected
       call_soap_method(:login, '//ns4:LoginResponse/return', {'Username' => username, 'Password' => password})
-      @impersonation_token = @response.http.headers['Set-Cookie'].gsub(/SESS1=(.*); path=\//, '\\1')
+      @impersonation_token = @response.http.headers['Set-Cookie'].gsub(/_gat=(.*); path=\//, '\\1')
       @connected           = true
     end
 
@@ -184,6 +189,10 @@ module GranicusPlatformAPI
     # return the requested camera
     def get_camera(camera_id)
       call_soap_method(:get_camera, '//ns5:GetCameraResponse/camera', {'CameraID' => camera_id})
+    end
+    
+    def savon
+      @client
     end
 
     # update a camera
@@ -230,6 +239,14 @@ module GranicusPlatformAPI
     def delete_event(event_id)
       call_soap_method(:delete_event, '//ns4:DeleteEventResponse', {'EventID' => event_id})
     end
+    
+    def get_event_video_location(event_id)
+      call_soap_method(:get_event_video_location, '//ns4:GetEventVideoLocationResponse/url', {'EventID' => event_id})
+    end
+    
+    def get_event_video_location_by_uid(event_uid)
+      call_soap_method(:get_event_video_location_by_uid, '//ns4:GetEventVideoLocationByUIDResponse/url', {'EventUID' => event_uid})
+    end
 
     # return all of the event meta data
     def get_event_meta_data(event_id)
@@ -271,10 +288,10 @@ module GranicusPlatformAPI
     end
 
     # add metadata to a clip
-    def add_clip_meta_data(clip_id, meta_data, options={})
+    def add_clip_meta_data(clip_id, meta_data)
       call_soap_method(             :add_clip_meta_data, '//ns5:AddClipMetaDataResponse/KeyTable', {
           'ClipID'   => clip_id,
-          'MetaData' => meta_data}, options)
+          'MetaData' => meta_data})
     end
 
     # fetch an attachment
@@ -351,9 +368,9 @@ module GranicusPlatformAPI
 
     #private
 
-    def call_soap_method(method, returnfilter, args={}, options={})
-      debug     = options[:debug]
-      @response = @client.request :wsdl, method do
+    def call_soap_method(method, returnfilter, args={})
+      debug     = @options[:debug]
+      @response = @client.request method do
         soap.namespaces['xmlns:granicus'] = "http://granicus.com/xsd"
         soap.namespaces['xmlns:SOAP-ENC'] = "http://schemas.xmlsoap.org/soap/encoding/"
         soap.body                         = prepare_hash args
@@ -436,8 +453,8 @@ module GranicusPlatformAPI
       if node.is_a? Nokogiri::XML::NodeSet or node.is_a? Array then
         return node.map { |el| handle_response el }
       end
-      return node.to_s unless node['type']
-      typespace, type = node['type'].split(':')
+      return node.to_s unless node.attr('xsi:type')
+      typespace, type = node.attr('xsi:type').split(':')
       case typespace
         when 'xsd'
           proc = self.class.typecasts[type]

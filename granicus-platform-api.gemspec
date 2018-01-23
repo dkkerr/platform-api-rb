@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.name = "granicus-platform-api"
   s.version     = GranicusPlatformAPI::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors = ["Javier Muniz"]
+  s.authors = ["Javier Muniz", "Dan Melton"]
   s.email = "javier@granicus.com"
   s.summary = "Granicus Open Platform API 1.x Wrapper"
   s.homepage = "https://github.com/Granicus/platform-api-rb"
@@ -14,10 +14,8 @@ Gem::Specification.new do |s|
 
   s.rubyforge_project = "granicus-platform-api"
 
-  s.files         = `git ls-files`.split("\n")
-  s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
-  s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
-  s.require_paths = ["lib"]
+  s.files        = Dir["{lib,spec}/**/*", "[A-Z]*"] - ["Gemfile.lock"]
+  s.require_path = "lib"
 
   s.add_development_dependency('rspec', '~> 2.6')
   s.add_development_dependency('simplecov', '~> 0.5.0')
