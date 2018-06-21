@@ -2,235 +2,235 @@ require 'hashie'
 
 module GranicusPlatformAPI
   class AgendaItem < Hashie::Dash
-    property :Department
-    property :Actions
+    property "Department"
+    property "Actions"
   end
 
   class Attendee < Hashie::Dash
-    property :ID
-    property :Name
-    property :OrderID
-    property :Voting
-    property :Chair
+    property "ID"
+    property "Name"
+    property "OrderID"
+    property "Voting"
+    property "Chair"
   end
 
   class AttendeeStatus < Hashie::Dash
-    property :Name
-    property :Status
+    property "Name"
+    property "Status"
   end
 
   class CameraData < Hashie::Dash
-    property :ID
-    property :Type
-    property :Name
-    property :InternalIP
-    property :ExternalIP
-    property :BroadcastPort
-    property :ControlPort
-    property :Identifier
+    property "ID"
+    property "Type"
+    property "Name"
+    property "InternalIP"
+    property "ExternalIP"
+    property "BroadcastPort"
+    property "ControlPort"
+    property "Identifier"
   end
 
   class CaptionData < Hashie::Dash
-    property :Caption
-    property :TimeStamp
+    property "Caption"
+    property "TimeStamp"
   end
 
   class ClipData < Hashie::Dash
-    property :ID
-    property :UID
-    property :ForeignID
-    property :Type
-    property :Name
-    property :Description
-    property :Keywords
-    property :Date
-    property :CameraID
-    property :FolderID
-    property :FileName
-    property :MinutesType
-    property :MinutesFile
-    property :AgendaType
-    property :AgendaFile
-    property :Duration
-    property :Status
-    property :StartTime
-    property :LastModified
-    property :Attendees
-    property :MotionTypes
-    property :Street1
-    property :Street2
-    property :City
-    property :State
-    property :Zip
-    property :AgendaTitle
-    property :AgendaPostedDate
+    property "ID"
+    property "UID"
+    property "ForeignID"
+    property "Type"
+    property "Name"
+    property "Description"
+    property "Keywords"
+    property "Date"
+    property "CameraID"
+    property "FolderID"
+    property "FileName"
+    property "MinutesType"
+    property "MinutesFile"
+    property "AgendaType"
+    property "AgendaFile"
+    property "Duration"
+    property "Status"
+    property "StartTime"
+    property "LastModified"
+    property "Attendees"
+    property "MotionTypes"
+    property "Street1"
+    property "Street2"
+    property "City"
+    property "State"
+    property "Zip"
+    property "AgendaTitle"
+    property "AgendaPostedDate"
   end
 
   class Document < Hashie::Dash
-    property :Description
-    property :Location
-    property :FileContents
-    property :FileExtension
+    property "Description"
+    property "Location"
+    property "FileContents"
+    property "FileExtension"
   end
 
   class EventData < Hashie::Dash
-    property :ID
-    property :UID
-    property :ForeignID
-    property :Name
-    property :CameraID
-    property :FolderID
-    property :Status
-    property :AgendaType
-    property :AgendaFile
-    property :PlayerTemplateID
-    property :ArchiveStatus
-    property :Duration
-    property :Broadcast
-    property :Record
-    property :AutoStart
-    property :StartTime
-    property :LastModified
-    property :Attendees
-    property :MotionTypes
-    property :Street1
-    property :Street2
-    property :City
-    property :State
-    property :Zip
-    property :AgendaTitle
-    property :MeetingTime
-    property :AgendaPostedDate
-    property :NextStartDate
-    property :AgendaRolloverID
-    property :CommentEnabled
-    property :CommentCloseOffset
+    property "ID"
+    property "UID"
+    property "ForeignID"
+    property "Name"
+    property "CameraID"
+    property "FolderID"
+    property "Status"
+    property "AgendaType"
+    property "AgendaFile"
+    property "PlayerTemplateID"
+    property "ArchiveStatus"
+    property "Duration"
+    property "Broadcast"
+    property "Record"
+    property "AutoStart"
+    property "StartTime"
+    property "LastModified"
+    property "Attendees"
+    property "MotionTypes"
+    property "Street1"
+    property "Street2"
+    property "City"
+    property "State"
+    property "Zip"
+    property "AgendaTitle"
+    property "MeetingTime"
+    property "AgendaPostedDate"
+    property "NextStartDate"
+    property "AgendaRolloverID"
+    property "CommentEnabled"
+    property "CommentCloseOffset"
   end
 
   class FolderData < Hashie::Dash
-    property :ID
-    property :Name
-    property :Description
-    property :Type
-    property :PlayerTemplateID
-    property :CreatedDate
-    property :Views
-    property :Servers
+    property "ID"
+    property "Name"
+    property "Description"
+    property "Type"
+    property "PlayerTemplateID"
+    property "CreatedDate"
+    property "Views"
+    property "Servers"
   end
 
   class GroupData < Hashie::Dash
-    property :ID
-    property :Name
-    property :Description
-    property :CreatedDate
+    property "ID"
+    property "Name"
+    property "Description"
+    property "CreatedDate"
   end
 
   class KeyMapping < Hashie::Dash
-    property :ForeignID
-    property :GranicusID
+    property "ForeignID"
+    property "GranicusID"
   end
 
   class MetaDataData < Hashie::Dash
-    property :ID
-    property :UID
-    property :ParentID
-    property :ParentUID
-    property :ForeignID
-    property :SourceID
-    property :Name
-    property :TimeStamp
-    property :OrderID
-    property :AllowComment
-    property :Payload
-    property :Children
+    property "ID"
+    property "UID"
+    property "ParentID"
+    property "ParentUID"
+    property "ForeignID"
+    property "SourceID"
+    property "Name"
+    property "TimeStamp"
+    property "OrderID"
+    property "AllowComment"
+    property "Payload"
+    property "Children"
   end
 
   class Comment < Hashie::Dash
-    property :FirstName
-    property :LastName
-    property :CommentText
-    property :Email
-    property :Address
-    property :City
-    property :State
-    property :Zip
-    property :Area
-    property :Position
-    property :HasVideoComment
-    property :CreatedStamp
+    property "FirstName"
+    property "LastName"
+    property "CommentText"
+    property "Email"
+    property "Address"
+    property "City"
+    property "State"
+    property "Zip"
+    property "Area"
+    property "Position"
+    property "HasVideoComment"
+    property "CreatedStamp"
   end
 
   class Motion < Hashie::Dash
-    property :Mover
-    property :Seconder
-    property :Type
-    property :MotionText
+    property "Mover"
+    property "Seconder"
+    property "Type"
+    property "MotionText"
   end
 
   class Note < Hashie::Dash
-    property :NoteText
-    property :EditorsNotes
-    property :Private
+    property "NoteText"
+    property "EditorsNotes"
+    property "Private"
   end
 
   class Rollcall < Hashie::Dash
-    property :Attendees
+    property "Attendees"
   end
 
   class ServerData < Hashie::Dash
-    property :ID
-    property :Name
-    property :ControlPort
-    property :FirewallCompatibility
-    property :Multicast
-    property :LoadBalancerScore
-    property :ReplicationUN
-    property :ReplicationPW
-    property :CreatedDate
+    property "ID"
+    property "Name"
+    property "ControlPort"
+    property "FirewallCompatibility"
+    property "Multicast"
+    property "LoadBalancerScore"
+    property "ReplicationUN"
+    property "ReplicationPW"
+    property "CreatedDate"
   end
 
   class ServerInterfaceData < Hashie::Dash
-    property :ID
-    property :ServerID
-    property :Name
-    property :Host
-    property :ControlPort
-    property :Directory
-    property :ReplicationUN
-    property :ReplicationPW
+    property "ID"
+    property "ServerID"
+    property "Name"
+    property "Host"
+    property "ControlPort"
+    property "Directory"
+    property "ReplicationUN"
+    property "ReplicationPW"
   end
 
   class Setting < Hashie::Dash
-    property :Name
-    property :Value
+    property "Name"
+    property "Value"
   end
 
   class TemplateData < Hashie::Dash
-    property :ID
-    property :Name
-    property :Description
-    property :Type
-    property :LastModified
-    property :CreatedDate
+    property "ID"
+    property "Name"
+    property "Description"
+    property "Type"
+    property "LastModified"
+    property "CreatedDate"
   end
 
   class ViewData < Hashie::Dash
-    property :ID
-    property :ForeignID
-    property :Name
-    property :IsActive
-    property :Events
-    property :Folders
+    property "ID"
+    property "ForeignID"
+    property "Name"
+    property "IsActive"
+    property "Events"
+    property "Folders"
   end
 
   class VoteEntry < Hashie::Dash
-    property :Name
-    property :Vote
+    property "Name"
+    property "Vote"
   end
 
   class VoteRecord < Hashie::Dash
-    property :MotionID
-    property :Passed
-    property :Votes
+    property "MotionID"
+    property "Passed"
+    property "Votes"
   end
 end
