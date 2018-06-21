@@ -271,6 +271,11 @@ module GranicusPlatformAPI
     def set_event_agenda_url(event_id, url)
       call_soap_method(:set_event_agenda_url, '//ns4:SetEventAgendaURLResponse', {'EventID' => event_id, 'URL' => url})
     end
+    
+    # set the clip agenda url
+    def set_clip_agenda_url(clip_id, url)
+      call_soap_method(:set_event_agenda_url, '//ns4:SetClipAgendaURLResponse', {'ClipID' => clip_id, 'URL' => url})
+    end
 
     # return all of the clip meta data
     def get_clip_meta_data(clip_id)
